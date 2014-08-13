@@ -11,7 +11,7 @@ To deploy to gh-pages
 git subtree push --prefix dist origin gh-pages
 ```
 
-To start project from this template
+To start a project from this template
 ---
 ```bash
 mkdir proj; cd proj;

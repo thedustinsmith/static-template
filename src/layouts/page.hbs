@@ -1,11 +1,13 @@
----
-layout: base.hbs
----
+{{#extend "base"}}
 
+{{#content "body"}}
 <header>
 	<h1>The title is {{title}}</h1>
 </header>
 
 <div class="page-container">
-{{> body }}
+	{{#block "content"}}
+	{{/block}}
 </div>
+{{/content}}
+{{/extend}}

@@ -1,16 +1,16 @@
 ---
 title: 'Home Page'
 ---
-{{#extend "page"}}
-{{#content "content"}}
+{% extends 'src/layouts/page.swig' %}
+
+{% block content %}
 <h2>Welcome to my static site</h2>
 
 <blockquote>-Dustin Smith</blockquote>
-{{/content}}
+{% endblock %}
 
-{{#content "scripts"}}
+{% block scripts %}
 <script>
 $("blockquote").css("color", "#bada55");
 </script>
-{{/content}}
-{{/extend}}
+{% endblock %}

@@ -18,13 +18,18 @@ module.exports = function (grunt) {
 
 		assemble: {
 			options: {
+				engine: 'swig',
 				layout: false,
-				partials: ['src/layouts/**/*.hbs'],
-				flatten: true
+				partials: ['src/layouts/**/*.swig'],
+				flatten: true,
+				swig: {
+					varControls: ["{%=", "%}"],
+					cache: false
+				},
 			},
 			dist: {
 				files: {
-					'dist/': ["src/pages/**/*.hbs" ]
+					'dist/': ["src/pages/**/*.swig" ]
 				}
 			}
 		},

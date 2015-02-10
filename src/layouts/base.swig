@@ -8,17 +8,14 @@
 		<link rel="icon" href="favicon.ico" />
 	</head>
 	<body>
-		{{#block "body"}}
-		{{> body }}
-		{{/block}}
+		{% block body %}{% endblock %}
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
 
 		<script type="text/javascript" src="js/all.min.js"></script>
 
-		{{#block "scripts"}}
-		{{/block}}
+		{% block scripts %}{% endblock %}
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 	<script>
 		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

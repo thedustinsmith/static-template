@@ -34,22 +34,17 @@ module.exports = function (grunt) {
 			}
 		},
 
-		concat: {
-			options: {
-				separator: ';'
-			},
-			dist: {
-				src: ['src/assets/js/**/*.js'],
-				dest: 'dist/js/all.min.js'
-			}
-		},
-
 		copy: {
 			dist: {
 				files: [
 					{ expand: true, flatten: true, src: 'src/assets/static/js/**', dest: 'dist/js/', filter: 'isFile' },
 					{ expand: true, flatten: true, src: 'src/assets/static/*.*', dest: 'dist/' }
 
+				]
+			},
+			js: {
+				files: [
+					{ expand: true, cwd: 'src/assets/js', src:'**', dest: 'dist/js/', filter: 'isFile' }
 				]
 			}
 		},
@@ -69,7 +64,7 @@ module.exports = function (grunt) {
 		uglify: {
 			dist: {
 				files: {
-					'dist/js/all.min.js': ['<%= concat.dist.dest %>']
+					'dist/js/all.min.js': ['dist/js/all.min.js']
 				}
 			}
 		},
@@ -83,9 +78,26 @@ module.exports = function (grunt) {
 				files: ['src/layouts/**/*', 'src/pages/**/*'],
 				tasks: ['assemble']
 			}
+		}, 
+
+		useminPrepare: {
+			html: 'dist/**/*.html',
+			options: {
+				dest: 'dist',
+				root: 'src/assets'
+			}
+		},
+
+		usemin: {
+			html: ['dist/{,*/}*.html'],
+			// css: ['dist/css/{,*/}*.css'],
+			options: {
+				dirs: ['dist']
+			}
 		}
 	});
 
+	grunt.loadNpmTasks('grunt-usemin');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
@@ -97,5 +109,23 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-newer');
 
 	/* grunt tasks */
-	grunt.registerTask('default', ['clean', 'copy', 'concat', 'uglify', 'less', 'assemble', 'connect', 'watch']);
+	grunt.registerTask('default', [
+		'clean', 
+		'copy', 
+		'less', 
+		'assemble', 
+		'connect', 
+		'watch']);
+
+
+	grunt.registerTask('prod', [
+		'clean', 
+		'assemble', 
+		'useminPrepare', 
+		'concat:generated', 
+		'uglify:generated', 
+		'less', 
+		'usemin', 
+		'connect::keepalive'
+	]);
 };

@@ -13,7 +13,10 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
 
-		<script type="text/javascript" src="js/all.min.js"></script>
+		<!-- build:js /js/all.min.js -->
+		<script type="text/javascript" src="/js/common.js"></script>
+		<script type="text/javascript" src="/js/main.js"></script>
+		<!-- endbuild -->
 
 		{% block scripts %}{% endblock %}
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
